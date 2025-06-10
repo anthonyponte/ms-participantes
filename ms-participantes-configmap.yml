@@ -1,31 +1,32 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: ms-participantes-config
+  name: ms-participantes-configmap
+  namespace: default
 data:
   application.yml: |
-    server:
-      port: 7075
-
     spring:
       application:
         name: ms-participantes
-
-    eventos:
-      service:
-        url: http://ms-eventos:9090
-
+      datasource:
+        url: jdbc:oracle:thin:@oracle-db-service:1521/XEPDB2
+        username: ${DB_USERNAME}
+        password: ${DB_PASSWORD}
+        driver-class-name: oracle.jdbc.OracleDriver
+    server:
+      port: 9091
     management:
-      endpoint:
-        health:
-          probes:
-            enabled: true
-      health:
-        livenessstate:
-          enabled: true
-        readinessstate:
-          enabled: true
       endpoints:
         web:
           exposure:
-            include: health
+            include: "*"
+      endpoint:
+        health:
+          show-details: always
+          probes:
+            enabled: true
+      health:
+        livenessState:
+          enabled: true
+        readinessState:
+          enabled: true

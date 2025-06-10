@@ -7,7 +7,7 @@ spec:
     app: ms-participantes
   ports:
   - protocol: TCP
-    port: 7075
-    targetPort: 7075
-    nodePort: 30075
+    port: 9091
+    targetPort: 9091
+    nodePort: 30091
   type: NodePort

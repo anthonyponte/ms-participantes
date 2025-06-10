@@ -1,9 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ms-participantes
-  labels:
-    app: ms-participantes
+  name: ms-participantes-deployment
 spec:
   replicas: 1
   selector:
@@ -15,30 +13,37 @@ spec:
         app: ms-participantes
     spec:
       containers:
-        - name: ms-participantes
-          image: anthonyponte/ms-participantes:v1
+        - name: ms-participantes-container
+          image: anthonyponte/ms-participantes:v3
           args:
             - "--spring.config.additional-location=file:/config/"
           ports:
-            - containerPort: 7075
-
+            - containerPort: 9091
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness
-              port: 7075
-            initialDelaySeconds: 100
+              port: 9091
+            initialDelaySeconds: 400
             periodSeconds: 30
             timeoutSeconds: 10
-
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
-              port: 7075
+              port: 9091
             initialDelaySeconds: 105
-            periodSeconds: 15
+            periodSeconds: 10
             timeoutSeconds: 10
-
           env:
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: dki-secret
+                  key: DB_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: dki-secret
+                  key: DB_PASSWORD
             - name: POD_NAME
               valueFrom:
                 fieldRef:
@@ -47,24 +52,21 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
-
           resources:
             requests:
               cpu: "100m"
-              memory: "300Mi"
+              memory: "400Mi"
             limits:
               cpu: "200m"
-              memory: "500Mi"
-
+              memory: "600Mi"
           volumeMounts:
-            - name: config-volume
+            - name: ms-participantes-volume
               mountPath: /config/
               subPath: application.yml
-
       volumes:
-        - name: config-volume
+        - name: ms-participantes-volume
           configMap:
-            name: ms-participantes-config
+            name: ms-participantes-configmap
             items:
               - key: application.yml
                 path: application.yml

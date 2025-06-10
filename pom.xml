@@ -8,7 +8,7 @@
 		<version>3.3.12-SNAPSHOT</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.sunat.pe</groupId>
+	<groupId>com.anthonyponte</groupId>
 	<artifactId>ms-participantes</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ms-participantes</name>

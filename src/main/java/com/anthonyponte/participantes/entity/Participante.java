@@ -1,4 +1,4 @@
-package com.sunat.pe.app.entities;
+package com.anthonyponte.participantes.entity;
 
 import java.util.Date;
 
@@ -14,26 +14,25 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
-@Table (name = "participantes")
+@Table(name = "participantes")
 public class Participante {
-
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(nullable = false, unique = true)
-    private Long idEvento;
-    
-    @Column(nullable = false, unique = true)
-    private String dni;
+	@Column(nullable = false, unique = true)
+	private String dni;
 
-    @Column(nullable = false, unique = true)
-    private String nombresApellidos;
+	@Column(nullable = false, unique = true)
+	private String nombresApellidos;
 
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    private Date fechaRegistro;
+	@Column(nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+	private Date fechaRegistro;
+
+	@Column(nullable = false, unique = true)
+	private Long idEvento;
 
 	public Long getId() {
 		return id;
@@ -41,14 +40,6 @@ public class Participante {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getIdEvento() {
-		return idEvento;
-	}
-
-	public void setIdEvento(Long idEvento) {
-		this.idEvento = idEvento;
 	}
 
 	public String getDni() {
@@ -75,6 +66,12 @@ public class Participante {
 		this.fechaRegistro = fechaRegistro;
 	}
 
-    
-    
+	public Long getIdEvento() {
+		return idEvento;
+	}
+
+	public void setIdEvento(Long idEvento) {
+		this.idEvento = idEvento;
+	}
+
 }
