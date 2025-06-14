@@ -33,10 +33,10 @@ public class ParticipanteController {
 
 	@PostMapping
 	public ResponseEntity<?> guardarParticipante(@RequestBody Participante participante) {
-		Long eventoId = participante.getIdEvento();
-		ResponseEntity<?> response = client.existeEventoPorId(eventoId);
+		Long idEvento = participante.getIdEvento();
+		ResponseEntity<?> response = client.existeEventoPorId(idEvento);
 		if (response.getStatusCode().is2xxSuccessful()) {
-			response = client.disminuirCapacidadMax(eventoId);
+			response = client.disminuirCapacidadMax(idEvento);
 			if (response.getStatusCode().is2xxSuccessful()) {
 				return ResponseEntity.ok(service.guardarParticipante(participante));
 			} else {
@@ -51,8 +51,8 @@ public class ParticipanteController {
 	public ResponseEntity<?> eliminarParticipante(@PathVariable Long id) {
 		Optional<Participante> participante = service.obtenerParticipantePorId(id);
 		if (participante.isPresent()) {
-			Long eventoId = participante.get().getIdEvento();
-			ResponseEntity<?> response = client.aumentarCapacidadMax(eventoId);
+			Long idEvento = participante.get().getIdEvento();
+			ResponseEntity<?> response = client.aumentarCapacidadMax(idEvento);
 			if (response.getStatusCode().is2xxSuccessful()) {
 				service.eliminarParticipante(id);
 				return ResponseEntity.ok().build();

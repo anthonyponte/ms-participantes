@@ -11,5 +11,5 @@ import com.anthonyponte.participantes.entity.Participante;
 public interface ParticipanteRepository extends JpaRepository<Participante, Long> {
 	List<Participante> findAllById(Long id);
 
-	Participante findByDniAndEventoId(String dni, Long eventoId);
+	Participante findByDniAndIdEvento(String dni, Long idEvento);
 }

@@ -12,18 +12,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "participantes")
+@Table(name = "participantes", uniqueConstraints = @UniqueConstraint(columnNames = { "dni", "id_evento" }))
 public class Participante {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false, unique = true)
+	@Column(length = 8, nullable = false)
 	private String dni;
 
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	private String nombresApellidos;
 
 	@Column(nullable = false)
@@ -31,7 +32,7 @@ public class Participante {
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date fechaRegistro;
 
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	private Long idEvento;
 
 	public Long getId() {
@@ -73,5 +74,4 @@ public class Participante {
 	public void setIdEvento(Long idEvento) {
 		this.idEvento = idEvento;
 	}
-
 }

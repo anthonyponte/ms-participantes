@@ -9,7 +9,7 @@ data:
       application:
         name: ms-participantes
       datasource:
-        url: jdbc:oracle:thin:@oracle-db-service:1521/XEPDB2
+        url: jdbc:oracle:thin:@oracle-db-service:1521/XEPDB1
         username: ${DB_USERNAME}
         password: ${DB_PASSWORD}
         driver-class-name: oracle.jdbc.OracleDriver

@@ -13,7 +13,7 @@ public interface ParticipanteService {
 
 	public Optional<Participante> obtenerParticipantePorId(Long id);
 
-	public Participante obtenerParticipantePorDniYEventoId(String dni, Long eventoId);
+	public Participante obtenerParticipantePorDniYIdEvento(String dni, Long idEvento);
 
 	public Participante guardarParticipante(Participante participante);
 

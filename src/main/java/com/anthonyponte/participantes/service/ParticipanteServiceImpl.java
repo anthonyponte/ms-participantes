@@ -25,8 +25,8 @@ public class ParticipanteServiceImpl implements ParticipanteService {
 	}
 
 	@Override
-	public Participante obtenerParticipantePorDniYEventoId(String dni, Long eventoId) {
-		return repository.findByDniAndEventoId(dni, eventoId);
+	public Participante obtenerParticipantePorDniYIdEvento(String dni, Long idEvento) {
+		return repository.findByDniAndIdEvento(dni, idEvento);
 	}
 
 	@Override
