@@ -9,7 +9,7 @@ import com.anthonyponte.participantes.entity.Participante;
 
 @Repository
 public interface ParticipanteRepository extends JpaRepository<Participante, Long> {
-	List<Participante> findAllById(Long id);
+	List<Participante> findAllByDni(String dni);
 
 	Participante findByDniAndIdEvento(String dni, Long idEvento);
 }
