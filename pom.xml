@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.12-SNAPSHOT</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>3.3.12</version>
+		<relativePath/>
 	</parent>
 	<groupId>com.anthonyponte</groupId>
 	<artifactId>ms-participantes</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>ms-participantes</name>
-	<description>Permitir a los participantes inscribirse en eventos existentes</description>
+	<description>Microservicio de participantes para el proyecto final del curso de Docker y Kubernetes Intermedio</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -40,10 +40,6 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
-		</dependency>       
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
@@ -60,34 +56,24 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
-			<version>3.3.5</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>
-				spring-cloud-starter-kubernetes-client
-			</artifactId>
-			<version>3.0.2</version>
+			<artifactId>spring-cloud-starter-kubernetes-client</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>
-				spring-cloud-starter-kubernetes-client-config
-			</artifactId>
-			<version>3.0.2</version>
+			<artifactId>spring-cloud-starter-kubernetes-client-config</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>
-				spring-cloud-starter-kubernetes-client-loadbalancer
-			</artifactId>
-			<version>3.0.2</version>
+			<artifactId>spring-cloud-starter-kubernetes-client-loadbalancer</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>
@@ -101,7 +87,6 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -130,5 +115,4 @@
 			</releases>
 		</pluginRepository>
 	</pluginRepositories>
-
 </project>
