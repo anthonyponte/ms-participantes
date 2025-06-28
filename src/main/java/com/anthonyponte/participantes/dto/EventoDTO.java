@@ -1,21 +1,10 @@
 package com.anthonyponte.participantes.dto;
 
-import java.util.Date;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-
-public class Evento {
+public class EventoDTO {
     private Long id;
     private String nombre;
     private String descripcion;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    private Date fecha;
-
+    private String fecha;
     private String ubicacion;
     private Integer capacidadMax;
 
@@ -43,11 +32,11 @@ public class Evento {
         this.descripcion = descripcion;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

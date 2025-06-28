@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.anthonyponte.participantes.dto.ParticipanteDTO;
 import com.anthonyponte.participantes.entity.Participante;
+import com.anthonyponte.participantes.mapper.ParticipanteMapper;
 import com.anthonyponte.participantes.service.ParticipanteService;
 
 @RestController
@@ -25,17 +27,24 @@ public class ParticipanteController {
 	private ParticipanteService service;
 
 	@GetMapping
-	public List<Participante> listarParticipantesPorDni(@RequestParam String dni) {
-		return service.listarParticipantesPorDni(dni);
+	public List<ParticipanteDTO> listarParticipantesPorDni(@RequestParam String dni) {
+		return service.listarParticipantesPorDni(dni)
+				.stream()
+				.map(ParticipanteMapper::toDTO)
+				.toList();
 	}
 
 	@PostMapping
-	public ResponseEntity<?> guardarParticipante(@RequestBody Participante participante) {
+	public ResponseEntity<?> guardarParticipante(@RequestBody ParticipanteDTO participanteDTO) {
+		Participante participante = ParticipanteMapper.toEntity(participanteDTO);
 		Participante p = service.guardarParticipante(participante);
+		ParticipanteDTO dto = ParticipanteMapper.toDTO(p);
+
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}")
 				.build(p.getId());
-		return ResponseEntity.created(uri).build();
+
+		return ResponseEntity.created(uri).body(dto);
 	}
 
 	@DeleteMapping("/{id}")

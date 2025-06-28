@@ -1,8 +1,6 @@
 package com.anthonyponte.participantes.entity;
 
-import java.util.Date;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,8 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
@@ -28,9 +24,7 @@ public class Participante {
 	private String nombresApellidos;
 
 	@Column(nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	private Date fechaRegistro;
+	private LocalDateTime fechaRegistro;
 
 	@Column(nullable = false)
 	private Long idEvento;
@@ -59,11 +53,11 @@ public class Participante {
 		this.nombresApellidos = nombresApellidos;
 	}
 
-	public Date getFechaRegistro() {
+	public LocalDateTime getFechaRegistro() {
 		return fechaRegistro;
 	}
 
-	public void setFechaRegistro(Date fechaRegistro) {
+	public void setFechaRegistro(LocalDateTime fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
 	}
 

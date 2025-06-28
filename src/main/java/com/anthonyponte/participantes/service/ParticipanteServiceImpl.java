@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.anthonyponte.participantes.dto.Evento;
+import com.anthonyponte.participantes.dto.EventoDTO;
 import com.anthonyponte.participantes.entity.Participante;
 import com.anthonyponte.participantes.feign.EventosFeignClient;
 import com.anthonyponte.participantes.repository.ParticipanteRepository;
@@ -30,10 +30,10 @@ public class ParticipanteServiceImpl implements ParticipanteService {
 	public Participante guardarParticipante(Participante participante) {
 		Participante p = null;
 		Long idEvento = participante.getIdEvento();
-		ResponseEntity<Evento> response = client.obtenerEventoPorId(idEvento);
+		ResponseEntity<EventoDTO> response = client.obtenerEventoPorId(idEvento);
 		if (response.getStatusCode().is2xxSuccessful()) {
 
-			Evento evento = response.getBody();
+			EventoDTO evento = response.getBody();
 			if (evento.getCapacidadMax() == 0) {
 				throw new ResponseStatusException(HttpStatus.BAD_GATEWAY, "No hay capacidad en el evento");
 			}
@@ -55,8 +55,8 @@ public class ParticipanteServiceImpl implements ParticipanteService {
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Participante no encontrado"));
 
 		Long idEvento = participante.getIdEvento();
-		ResponseEntity<Evento> response = client.obtenerEventoPorId(idEvento);
-		Evento evento = response.getBody();
+		ResponseEntity<EventoDTO> response = client.obtenerEventoPorId(idEvento);
+		EventoDTO evento = response.getBody();
 
 		repository.deleteById(id);
 
