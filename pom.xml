@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.anthonyponte</groupId>
 	<artifactId>ms-participantes</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<name>ms-participantes</name>
 	<description>Microservicio de participantes para el proyecto final del curso de Docker y Kubernetes Intermedio</description>
 	<url/>
